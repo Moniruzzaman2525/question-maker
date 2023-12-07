@@ -16,25 +16,6 @@ const FillInTheGap = () => {
         console.log(index);
         e.preventDefault();
     };
-
-    // const handleDrop = (e, index) => {
-    //     e.preventDefault();
-    //     const draggedAnswer = e.dataTransfer.getData('text/plain');
-    //     const newAnswers = [...userAnswers];
-    //     newAnswers[index] = draggedAnswer;
-    
-    //     // Replace the placeholder in the question with the actual answer
-    //     const newQuestion = question
-    //         .split(' ')
-    //         .map((word, i) => (i === index ? draggedAnswer : word))
-    //         .join(' ');
-    
-    //     setUserAnswers(newAnswers);
-    //     setQuestion(newQuestion);
-    
-    //     // Remove the dropped answer from the list of available answers
-    //     setAllAnswers((prevAnswers) => prevAnswers.filter((answer) => answer !== draggedAnswer));
-    // };
     
     const handleDrop = (e, index) => {
         e.preventDefault();
