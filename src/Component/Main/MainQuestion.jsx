@@ -13,10 +13,6 @@ const MainQuestion = () => {
     const { items, sentence, questions, clozeSentence, categorie, underlinedWords, editorContent, passage } = useContext(GlobalContext)
 
     const saveQuestion = async () => {
-        console.log('comprehensionAnswer:', comprehensionAnswer);
-        console.log('clozeAnswer:', clozeAnswer);
-        console.log('categorizeAnswer:', categorizeAnswer);
-
         const missingSections = [];
 
         if (!comprehensionAnswer) {

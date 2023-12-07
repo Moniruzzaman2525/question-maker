@@ -2,7 +2,7 @@ import { createApi, fetchBaseQuery } from "@reduxjs/toolkit/query/react";
 import axios from "axios";
 
 import { logOut, setCredentials } from "../States/authSlice";
-const URL = "http://localhost:5000/";
+const URL = "https://question-maker-server.vercel.app/";
 
 const baseQuery = fetchBaseQuery({
   baseUrl: URL,

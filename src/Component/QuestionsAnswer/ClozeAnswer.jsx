@@ -1,6 +1,6 @@
 import { useEffect, useState } from 'react';
 
-const ClozeAnswer = ({ items, index, setClozeAnswer }) => {
+const ClozeAnswer = ({ items, index, setClozeAnswer , setClozeAnswerData }) => {
     const [question, setQuestion] = useState(items?.clozeSentence);
     const [questionAnswer, setQuestionAnswer] = useState();
     const [userAnswers, setUserAnswers] = useState(Array(items?.underLineWords?.length).fill(''));
@@ -56,6 +56,7 @@ const ClozeAnswer = ({ items, index, setClozeAnswer }) => {
     useEffect(()=>{
         if (allAnswers.length === 0) {
             setClozeAnswer(true)
+            setClozeAnswerData(questionAnswer)
         }
     },[allAnswers])
     return (

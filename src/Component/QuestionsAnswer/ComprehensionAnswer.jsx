@@ -1,6 +1,6 @@
 import { useEffect, useState } from 'react';
 
-const MCQPage = ({ items, index, setComprehensionAnswer }) => {
+const MCQPage = ({ items, index, setComprehensionAnswer, setComprehensionAnswerData }) => {
     const initialQuestions = items?.question
 
     const [questions, setQuestions] = useState(initialQuestions);
@@ -16,6 +16,7 @@ const MCQPage = ({ items, index, setComprehensionAnswer }) => {
     useEffect(() => {
         if (!userAnswers.includes(null)) {
             setComprehensionAnswer(true);
+            setComprehensionAnswerData(userAnswers)
         }
     }, [userAnswers]);
 

@@ -1,22 +1,21 @@
 import { useEffect, useState } from 'react';
 
-const CategorieAnswer = ({ items, index, setCategorizeAnswer }) => {
+const CategorieAnswer = ({ items, index, setCategorizeAnswer, setCategorizeAnswerData }) => {
     const allItems = items?.items?.map(entry => entry.item)
         .filter(item => item.trim() !== '');
     const [data, setData] = useState(allItems);
 
-    // Dynamic state variables based on items.categorie
     const categoryStates = {};
     items.categorie.forEach(category => {
         categoryStates[category.toLowerCase()] = useState([]);
     });
+    // console.log(items.categorie);
+    // console.log(categoryStates);
 
     const handleDrop = (e, type) => {
         e.preventDefault();
         const droppedItem = e.dataTransfer.getData('text');
         setData((prevData) => prevData.filter(item => item !== droppedItem));
-
-        // Update the corresponding state variable dynamically
         if (categoryStates[type]) {
             const [state, setState] = categoryStates[type];
             setState((prevState) => [...prevState, droppedItem]);
@@ -27,19 +26,30 @@ const CategorieAnswer = ({ items, index, setCategorizeAnswer }) => {
         e.preventDefault();
     };
 
-    useEffect(() => {
-        items.categorie.forEach(category => {
-            if (category.trim() !== '') {
-                const [state] = categoryStates[category.toLowerCase()];
-                // console.log(`${category}:`, state);
-            }
-        });
-    }, [categoryStates, items.categorie]);
-    // console.log(data.length === 0);
+    // useEffect(() => {
+    //     const newStoredStates = {};
+    //     items.categorie.forEach(category => {
+    //         if (category.trim() !== '') {
+    //             const [state] = categoryStates[category.toLowerCase()];
+    //             newStoredStates[category.toLowerCase()] = state;
+    //         }
+    //     });
+    //     setCategorizeAnswerData(newStoredStates);
+    //     // console.log(newStoredStates);
+    //     // 
+    // }, [categoryStates]);
 
     useEffect(()=>{
         if (data.length === 0) {
+            const newStoredStates = {};
             setCategorizeAnswer(true)
+            items.categorie.forEach(category => {
+                if (category.trim() !== '') {
+                    const [state] = categoryStates[category.toLowerCase()];
+                    newStoredStates[category.toLowerCase()] = state;
+                }
+            });
+            setCategorizeAnswerData(newStoredStates);
         }
     },[data])
     return (
